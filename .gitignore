@@ -1,0 +1,14 @@
+moneytrackAPI/node_modules
+moneytrackApp/node_modules
+
+moneytrackAPI/.env
+moneytrackAPI/.env.*
+
+moneytrackApp/.angular
+moneytrackApp/dist
+moneytrackApp/www
+moneytrackApp/.ionic
+
+*.log
+.DS_Store
+Thumbs.db

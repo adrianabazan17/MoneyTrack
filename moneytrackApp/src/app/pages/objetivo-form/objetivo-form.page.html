@@ -1,0 +1,141 @@
+<ion-header>
+
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons slot="start">
+
+      <ion-button
+        color="light"
+        (click)="volver()">
+
+        <ion-icon
+          name="arrow-back-outline">
+        </ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>
+
+      {{ editando ? 'Editar objetivo' : 'Nuevo objetivo' }}
+
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="contenido">
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-item>
+
+        <ion-label position="stacked">
+
+          Nombre del objetivo
+
+        </ion-label>
+
+        <ion-input
+          [(ngModel)]="objetivo.nombre"
+          placeholder="Ej. Laptop Gamer">
+
+        </ion-input>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label position="stacked">
+
+          Descripción
+
+        </ion-label>
+
+        <ion-textarea
+          autoGrow="true"
+          [(ngModel)]="objetivo.descripcion"
+          placeholder="Descripción del objetivo">
+
+        </ion-textarea>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label position="stacked">
+
+          Monto meta ($)
+
+        </ion-label>
+
+        <ion-input
+          type="number"
+          [(ngModel)]="objetivo.monto_meta">
+
+        </ion-input>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label>
+
+          Fecha límite
+
+        </ion-label>
+
+        <ion-datetime-button
+          datetime="fechaLimite">
+
+        </ion-datetime-button>
+
+      </ion-item>
+
+      <ion-modal keepContentsMounted="true">
+
+        <ng-template>
+
+          <ion-datetime
+
+            id="fechaLimite"
+
+            presentation="date"
+
+            [(ngModel)]="objetivo.fecha_limite">
+
+          </ion-datetime>
+
+        </ng-template>
+
+      </ion-modal>
+
+      <ion-button
+
+        expand="block"
+
+        color="primary"
+
+        class="guardar"
+
+        (click)="guardar()">
+
+        <ion-icon
+          slot="start"
+          name="save-outline">
+
+        </ion-icon>
+
+        {{ editando ? 'Guardar cambios' : 'Crear objetivo' }}
+
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

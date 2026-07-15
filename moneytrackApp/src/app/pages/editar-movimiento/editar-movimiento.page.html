@@ -1,0 +1,168 @@
+<ion-header>
+
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons slot="start">
+
+      <ion-button
+        color="light"
+        (click)="volver()">
+
+        <ion-icon name="arrow-back-outline"></ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>
+
+      Editar Movimiento
+
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="form-content">
+
+  <form
+    [formGroup]="movimientoForm"
+    (ngSubmit)="guardar()">
+
+    <ion-segment
+      formControlName="tipo_movimiento"
+      (ionChange)="cambiarTipo($event)">
+
+      <ion-segment-button value="Ingreso">
+
+        <ion-icon
+          name="cash-outline">
+        </ion-icon>
+
+        <ion-label>
+
+          Ingreso
+
+        </ion-label>
+
+      </ion-segment-button>
+
+      <ion-segment-button value="Gasto">
+
+        <ion-icon
+          name="card-outline">
+        </ion-icon>
+
+        <ion-label>
+
+          Gasto
+
+        </ion-label>
+
+      </ion-segment-button>
+
+    </ion-segment>
+
+    <br>
+
+    <ion-item>
+
+      <ion-label position="stacked">
+
+        Categoría
+
+      </ion-label>
+
+      <ion-select
+        formControlName="categoria_id">
+
+        <ion-select-option
+          *ngFor="let categoria of categoriasFiltradas"
+          [value]="categoria.id">
+
+          {{ categoria.nombre }}
+
+        </ion-select-option>
+
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label position="stacked">
+
+        Descripción
+
+      </ion-label>
+
+      <ion-input
+        formControlName="descripcion">
+      </ion-input>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label position="stacked">
+
+        Monto
+
+      </ion-label>
+
+      <ion-input
+        type="number"
+        formControlName="monto">
+      </ion-input>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label position="stacked">
+
+        Fecha
+
+      </ion-label>
+
+      <ion-datetime
+        presentation="date"
+        formControlName="fecha">
+      </ion-datetime>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label position="stacked">
+
+        Observación
+
+      </ion-label>
+
+      <ion-textarea
+        rows="4"
+        formControlName="observacion">
+      </ion-textarea>
+
+    </ion-item>
+
+    <br>
+
+    <ion-button
+      expand="block"
+      type="submit">
+
+      <ion-icon
+        slot="start"
+        name="save-outline">
+      </ion-icon>
+
+      Guardar Cambios
+
+    </ion-button>
+
+  </form>
+
+</ion-content>

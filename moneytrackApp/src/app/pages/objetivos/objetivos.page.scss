@@ -1,0 +1,185 @@
+.toolbar {
+
+  --background: #7c3aed;
+
+  --color: white;
+
+}
+
+.contenido {
+
+  --background: #f5f5f5;
+
+}
+
+.vacio {
+
+  text-align: center;
+
+  margin-top: 60px;
+
+  color: #777;
+
+  font-size: 18px;
+
+}
+
+ion-card {
+
+  margin: 16px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.cabecera {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+}
+
+.cabecera h2 {
+
+  margin: 0;
+
+  font-size: 22px;
+
+  font-weight: bold;
+
+  color: #333;
+
+}
+
+.cabecera p {
+
+  margin-top: 8px;
+
+  color: #666;
+
+  font-size: 15px;
+
+}
+
+.estado {
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  color: white;
+
+}
+
+.completado {
+
+  background: #22c55e;
+
+}
+
+.pendiente {
+
+  background: #f59e0b;
+
+}
+
+.datos {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 18px;
+
+  margin-bottom: 15px;
+
+}
+
+.datos div {
+
+  text-align: center;
+
+  flex: 1;
+
+}
+
+.datos strong {
+
+  display: block;
+
+  color: #666;
+
+  margin-bottom: 6px;
+
+  font-size: 14px;
+
+}
+
+.datos div {
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  color: #333;
+
+}
+
+ion-progress-bar {
+
+  height: 12px;
+
+  border-radius: 12px;
+
+  margin-top: 15px;
+
+}
+
+.progreso {
+
+  text-align: right;
+
+  margin-top: 8px;
+
+  font-weight: bold;
+
+  color: #7c3aed;
+
+  font-size: 16px;
+
+}
+
+.fecha {
+
+  margin-top: 18px;
+
+  color: #666;
+
+  font-size: 14px;
+
+}
+
+.acciones {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-top: 12px;
+
+}
+
+.acciones ion-button {
+
+  margin-left: 5px;
+
+}

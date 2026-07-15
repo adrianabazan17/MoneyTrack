@@ -1,0 +1,157 @@
+.toolbar {
+
+  --background: linear-gradient(90deg,#7C3AED,#6D28D9);
+
+  color: white;
+
+}
+
+.perfil-content {
+
+  --background: #f5f7fb;
+
+}
+
+.perfil-container {
+
+  padding: 20px;
+
+}
+
+.avatar {
+
+  display: block;
+
+  margin: 15px auto;
+
+  font-size: 110px;
+
+  color: #7C3AED;
+
+}
+
+h2 {
+
+  text-align: center;
+
+  margin-top: 5px;
+
+  margin-bottom: 5px;
+
+  font-size: 30px;
+
+  font-weight: bold;
+
+  color: #222;
+
+}
+
+.correo {
+
+  text-align: center;
+
+  color: #777;
+
+  margin-bottom: 25px;
+
+}
+
+ion-card {
+
+  border-radius: 23px;
+
+  margin-bottom: 23px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+
+}
+
+ion-card h3 {
+
+  font-weight: 00;
+
+  margin-bottom: 12px;
+
+}
+
+ion-item {
+
+  --background: transparent;
+
+  --padding-start: 0;
+
+  --inner-padding-end: 0;
+
+}
+
+ion-item ion-icon {
+
+  color: #7C3AED;
+
+  font-size: 22px;
+
+}
+
+ion-label h3 {
+
+  font-size: 14px;
+
+  color: #777;
+
+  margin-bottom: 4px;
+
+}
+
+ion-label p {
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  color: #222;
+
+}
+
+.btn-salir {
+
+  margin-top: 25px;
+
+  --border-radius: 14px;
+
+  height: 52px;
+
+  font-weight: bold;
+
+}
+
+.footer {
+
+  margin-top: 35px;
+
+  text-align: center;
+
+  color: #666;
+
+}
+
+.footer strong {
+
+  display: block;
+
+  font-size: 18px;
+
+  margin-bottom: 5px;
+
+}
+
+.footer p {
+
+  margin: 4px 0;
+
+}
+
+.footer small {
+
+  color: #999;
+
+}

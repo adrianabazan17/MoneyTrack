@@ -1,0 +1,278 @@
+<ion-header>
+
+  <ion-toolbar class="toolbar">
+
+    <ion-title>
+
+      MoneyTrack
+
+    </ion-title>
+
+    <ion-buttons slot="end">
+
+      <ion-button
+        routerLink="/profile"
+        color="light">
+
+        <ion-icon
+          name="person-circle-outline">
+        </ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="dashboard-content">
+
+  <div class="container">
+
+    <h2>
+
+      👋 Hola, {{ usuario?.nombres }}
+
+    </h2>
+
+    <p>
+
+      Bienvenida nuevamente
+
+    </p>
+
+    <!-- Saldo -->
+
+    <ion-card class="saldo-card">
+
+      <ion-card-content>
+
+        <ion-icon
+          name="wallet-outline">
+        </ion-icon>
+
+        <h3>
+
+          Saldo Total
+
+        </h3>
+
+        <h1>
+
+          $ {{ saldo | number:'1.2-2' }}
+
+        </h1>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <!-- Ingresos y Gastos -->
+
+    <div class="cards">
+
+      <ion-card>
+
+        <ion-card-content>
+
+          <ion-icon
+            name="cash-outline">
+          </ion-icon>
+
+          <h3>
+
+            Ingresos
+
+          </h3>
+
+          <h2>
+
+            $ {{ totalIngresos | number:'1.2-2' }}
+
+          </h2>
+
+        </ion-card-content>
+
+      </ion-card>
+
+      <ion-card>
+
+        <ion-card-content>
+
+          <ion-icon
+            name="trending-down-outline">
+          </ion-icon>
+
+          <h3>
+
+            Gastos
+
+          </h3>
+
+          <h2>
+
+            $ {{ totalGastos | number:'1.2-2' }}
+
+          </h2>
+
+        </ion-card-content>
+
+      </ion-card>
+
+    </div>
+
+    <!-- Acciones rápidas -->
+
+    <h3>
+
+      Acciones rápidas
+
+    </h3>
+
+    <div class="acciones-rapidas">
+
+      <ion-card routerLink="/movimiento-form">
+
+        <ion-card-content>
+
+          <ion-icon
+            name="add-circle-outline">
+          </ion-icon>
+
+          <h4>
+
+            Nuevo Movimiento
+
+          </h4>
+
+        </ion-card-content>
+
+      </ion-card>
+
+      <ion-card routerLink="/movimientos">
+
+        <ion-card-content>
+
+          <ion-icon
+            name="list-outline">
+          </ion-icon>
+
+          <h4>
+
+            Movimientos
+
+          </h4>
+
+        </ion-card-content>
+
+      </ion-card>
+
+      <ion-card routerLink="/reportes">
+
+        <ion-card-content>
+
+          <ion-icon
+            name="bar-chart-outline">
+          </ion-icon>
+
+          <h4>
+
+            Reportes
+
+          </h4>
+
+        </ion-card-content>
+
+      </ion-card>
+
+      <ion-card routerLink="/objetivos">
+
+        <ion-card-content>
+
+          <ion-icon
+            name="flag-outline">
+          </ion-icon>
+
+          <h4>
+
+            Objetivos
+
+          </h4>
+
+        </ion-card-content>
+
+      </ion-card>
+
+    </div>
+
+    <!-- Últimos movimientos -->
+
+    <h3>
+
+      Últimos movimientos
+
+    </h3>
+
+    <ion-card>
+
+      <ion-card-content>
+
+        <div *ngIf="ultimosMovimientos.length === 0">
+
+          <p>
+
+            No existen movimientos registrados.
+
+          </p>
+
+        </div>
+
+        <div
+          class="movimiento"
+          *ngFor="let mov of ultimosMovimientos">
+
+          <div class="info">
+
+            <strong>
+
+              {{ mov.categoria }}
+
+            </strong>
+
+            <small>
+
+              {{ mov.descripcion }}
+
+            </small>
+
+            <small>
+
+              {{ mov.fecha }}
+
+            </small>
+
+          </div>
+
+          <div
+            class="monto"
+            [ngClass]="{
+              'ingreso': mov.tipo_movimiento === 'Ingreso',
+              'gasto': mov.tipo_movimiento === 'Gasto'
+            }">
+
+            {{ mov.tipo_movimiento === 'Ingreso' ? '+' : '-' }}
+
+            $ {{ mov.monto }}
+
+          </div>
+
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

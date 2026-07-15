@@ -1,0 +1,236 @@
+<ion-header>
+
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons slot="start">
+
+      <ion-button
+        color="light"
+        (click)="volver()">
+
+        <ion-icon
+          name="arrow-back-outline">
+        </ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>
+
+      Reportes
+
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="contenido">
+
+  <!-- Selección de mes -->
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-item>
+
+        <ion-label>
+
+          Mes
+
+        </ion-label>
+
+        <ion-select
+          [(ngModel)]="mes"
+          (ionChange)="cambiarPeriodo()">
+
+          <ion-select-option
+            *ngFor="let m of meses"
+            [value]="m.id">
+
+            {{ m.nombre }}
+
+          </ion-select-option>
+
+        </ion-select>
+
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- Resumen -->
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <h2>
+
+        Resumen del mes
+
+      </h2>
+
+      <div class="resumen-item">
+
+        <ion-icon
+          name="cash-outline"
+          color="success">
+        </ion-icon>
+
+        <span>
+
+          Ingresos
+
+        </span>
+
+        <strong class="ingreso">
+
+          $ {{ ingresos | number:'1.2-2' }}
+
+        </strong>
+
+      </div>
+
+      <div class="resumen-item">
+
+        <ion-icon
+          name="card-outline"
+          color="danger">
+        </ion-icon>
+
+        <span>
+
+          Gastos
+
+        </span>
+
+        <strong class="gasto">
+
+          $ {{ gastos | number:'1.2-2' }}
+
+        </strong>
+
+      </div>
+
+      <div class="resumen-item">
+
+        <ion-icon
+          name="wallet-outline"
+          color="primary">
+        </ion-icon>
+
+        <span>
+
+          Saldo
+
+        </span>
+
+        <strong>
+
+          $ {{ saldo | number:'1.2-2' }}
+
+        </strong>
+
+      </div>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- Gráfico circular -->
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <h2>
+
+        Gastos por categoría
+
+      </h2>
+
+      <canvas #graficoCategorias id="graficoCategorias"></canvas>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- Detalle -->
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <h2>
+
+        Detalle de gastos
+
+      </h2>
+
+      <div
+        class="detalle-item"
+        *ngFor="let item of detalleCategorias">
+
+        <div>
+
+          <strong>
+
+            {{ item.categoria }}
+
+          </strong>
+
+        </div>
+
+        <div class="detalle-valores">
+
+          <span>
+
+            $ {{ item.total }}
+
+          </span>
+
+          <span>
+
+            {{ item.porcentaje }} %
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- Gráfico de barras -->
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <h2>
+
+        Comparación mensual
+
+      </h2>
+
+      <canvas #graficoResumen id="graficoResumen"></canvas>
+
+    </ion-card-content>
+
+  </ion-card>
+  <ion-button
+    expand="block"
+    color="primary"
+    (click)="exportarPDF()">
+
+    Descargar reporte PDF
+
+  </ion-button>
+
+</ion-content>

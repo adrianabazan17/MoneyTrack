@@ -1,0 +1,307 @@
+<ion-header>
+
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons slot="start">
+
+      <ion-button
+        color="light"
+        (click)="volver()">
+
+        <ion-icon
+          name="arrow-back-outline">
+        </ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>
+
+      Mis Movimientos
+
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="contenido">
+
+  <div class="filtros">
+
+    <!-- Buscador -->
+
+    <ion-searchbar
+      placeholder="Buscar movimiento..."
+      [(ngModel)]="filtros.buscar"
+      (ionInput)="aplicarFiltros()">
+
+    </ion-searchbar>
+
+    <!-- Botón para mostrar filtros -->
+
+    <ion-button
+      expand="block"
+      fill="clear"
+      (click)="toggleFiltros()"
+      color="dark">
+
+      {{ mostrarFiltros ? 'Ocultar filtros' : 'Filtros avanzados' }}
+
+      <ion-icon
+        slot="end"
+        [name]="mostrarFiltros ? 'chevron-up-outline' : 'chevron-down-outline'">
+      </ion-icon>
+
+    </ion-button>
+
+    <!-- Filtros -->
+
+    <div *ngIf="mostrarFiltros">
+
+      <ion-item>
+
+        <ion-label>
+
+          Tipo
+
+        </ion-label>
+
+        <ion-select
+          [(ngModel)]="filtros.tipo"
+          (ionChange)="aplicarFiltros()">
+
+          <ion-select-option value="">
+
+            Todos
+
+          </ion-select-option>
+
+          <ion-select-option value="Ingreso">
+
+            Ingreso
+
+          </ion-select-option>
+
+          <ion-select-option value="Gasto">
+
+            Gasto
+
+          </ion-select-option>
+
+        </ion-select>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label>
+
+          Categoría
+
+        </ion-label>
+
+        <ion-select
+          [(ngModel)]="filtros.categoria"
+          (ionChange)="aplicarFiltros()">
+
+          <ion-select-option value="">
+
+            Todas
+
+          </ion-select-option>
+
+          <ion-select-option
+            *ngFor="let categoria of categorias"
+            [value]="categoria.id">
+
+            {{ categoria.nombre }}
+
+          </ion-select-option>
+
+        </ion-select>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-label>
+
+          Desde
+
+        </ion-label>
+
+        <ion-datetime-button
+          datetime="fechaDesde">
+        </ion-datetime-button>
+
+      </ion-item>
+
+      <ion-modal keepContentsMounted="true">
+
+        <ng-template>
+
+          <ion-datetime
+            id="fechaDesde"
+            presentation="date"
+            [(ngModel)]="filtros.desde"
+            (ionChange)="aplicarFiltros()">
+
+          </ion-datetime>
+
+        </ng-template>
+
+      </ion-modal>
+
+      <ion-item>
+
+        <ion-label>
+
+          Hasta
+
+        </ion-label>
+
+        <ion-datetime-button
+          datetime="fechaHasta">
+        </ion-datetime-button>
+
+      </ion-item>
+
+      <ion-modal keepContentsMounted="true">
+
+        <ng-template>
+
+          <ion-datetime
+            id="fechaHasta"
+            presentation="date"
+            [(ngModel)]="filtros.hasta"
+            (ionChange)="aplicarFiltros()">
+
+          </ion-datetime>
+
+        </ng-template>
+
+      </ion-modal>
+
+      <ion-button
+        expand="block"
+        fill="outline"
+        (click)="limpiarFiltros()"
+        color="dark">
+
+        Limpiar filtros
+
+      </ion-button>
+
+    </div>
+
+  </div>
+
+  <!-- Sin movimientos -->
+
+  <div *ngIf="movimientos.length == 0">
+
+    <p class="vacio">
+
+      No existen movimientos registrados.
+
+    </p>
+
+  </div>
+
+  <!-- Lista -->
+
+  <ion-card
+    *ngFor="let mov of movimientos">
+
+    <ion-card-content>
+
+      <div class="cabecera">
+
+        <div>
+
+          <h2>
+
+            {{ mov.categoria }}
+
+          </h2>
+
+          <small>
+
+            {{ mov.descripcion }}
+
+          </small>
+
+          <p
+            class="observacion"
+            *ngIf="mov.observacion">
+
+            {{ mov.observacion }}
+
+          </p>
+
+        </div>
+
+        <ion-icon
+          [name]="mov.tipo_movimiento == 'Ingreso'
+            ? 'cash-outline'
+            : 'card-outline'">
+
+        </ion-icon>
+
+      </div>
+
+      <div class="detalle">
+
+        <span>
+
+          {{ mov.fecha }}
+
+        </span>
+
+        <strong
+          [ngClass]="{
+            ingreso: mov.tipo_movimiento == 'Ingreso',
+            gasto: mov.tipo_movimiento == 'Gasto'
+          }">
+
+          {{ mov.tipo_movimiento == 'Ingreso' ? '+' : '-' }}
+
+          $ {{ mov.monto }}
+
+        </strong>
+
+      </div>
+
+      <div class="acciones">
+
+        <ion-button
+          fill="clear"
+          color="primary"
+          (click)="editar(mov.id)">
+
+          <ion-icon
+            name="create-outline">
+          </ion-icon>
+
+        </ion-button>
+
+        <ion-button
+          fill="clear"
+          color="danger"
+          (click)="eliminar(mov.id)">
+
+          <ion-icon
+            name="trash-outline">
+          </ion-icon>
+
+        </ion-button>
+
+      </div>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

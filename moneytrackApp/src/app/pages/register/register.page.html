@@ -1,0 +1,111 @@
+<ion-content class="login-content">
+
+  <div class="login-container">
+
+    <div class="logo">
+
+      <ion-icon name="wallet-outline"></ion-icon>
+
+      <h1>MoneyTrack</h1>
+
+      <p>Crea tu cuenta</p>
+
+    </div>
+
+    <ion-card>
+
+      <ion-card-content>
+
+        <form [formGroup]="registerForm" (ngSubmit)="registrar()">
+
+          <ion-item>
+            <ion-icon
+                name="person-outline"
+                slot="start">
+            </ion-icon>
+            <ion-input
+              placeholder="Nombres"
+              formControlName="nombres">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon
+                name="person-outline"
+                slot="start">
+            </ion-icon>
+            <ion-input
+              placeholder="Apellidos"
+              formControlName="apellidos">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon
+                name="mail-outline"
+                slot="start">
+            </ion-icon>
+            <ion-input
+              type="email"
+              placeholder="Correo electrónico"
+              formControlName="correo">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon
+                name="lock-closed-outline"
+                slot="start">
+            </ion-icon>
+            <ion-input
+              [type]="mostrarPassword ? 'text':'password'"
+              placeholder="Contraseña"
+              formControlName="password">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon
+                name="lock-closed-outline"
+                slot="start">
+            </ion-icon>
+            <ion-input
+              [type]="mostrarConfirmar ? 'text':'password'"
+              placeholder="Confirmar contraseña"
+              formControlName="confirmarPassword">
+            </ion-input>
+          </ion-item>
+
+          <ion-button
+            expand="block"
+            class="login-button"
+            type="submit"
+            color="dark">
+
+            Crear Cuenta
+
+          </ion-button>
+
+        </form>
+
+        <div class="register">
+
+          ¿Ya tienes una cuenta?
+
+          <br>
+
+          <a routerLink="/login">
+
+            Iniciar sesión
+
+          </a>
+
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

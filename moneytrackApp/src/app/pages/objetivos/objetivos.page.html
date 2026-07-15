@@ -1,0 +1,214 @@
+<ion-header>
+
+  <ion-toolbar class="toolbar">
+
+    <ion-buttons slot="start">
+
+      <ion-button
+        color="light"
+        (click)="volver()">
+
+        <ion-icon
+          name="arrow-back-outline">
+        </ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>
+
+      Objetivos de ahorro
+
+    </ion-title>
+
+    <ion-buttons slot="end">
+
+      <ion-button
+        color="light"
+        (click)="nuevo()">
+
+        <ion-icon
+          name="add-outline">
+        </ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="contenido">
+
+  <div *ngIf="objetivos.length === 0">
+
+    <p class="vacio">
+
+      Aún no tienes objetivos de ahorro.
+
+    </p>
+
+  </div>
+
+  <ion-card
+    *ngFor="let objetivo of objetivos">
+
+    <ion-card-content>
+
+      <div class="cabecera">
+
+        <div>
+
+          <h2>
+
+            🎯 {{ objetivo.nombre }}
+
+          </h2>
+
+          <p *ngIf="objetivo.descripcion">
+
+            {{ objetivo.descripcion }}
+
+          </p>
+
+        </div>
+
+        <span
+          class="estado"
+          [ngClass]="{
+
+            completado: objetivo.estado === 'Completado',
+
+            pendiente: objetivo.estado === 'Pendiente'
+
+          }">
+
+          {{ objetivo.estado }}
+
+        </span>
+
+      </div>
+
+      <div class="datos">
+
+        <div>
+
+          <strong>Meta</strong>
+
+          <br>
+
+          $ {{ objetivo.monto_meta | number:'1.2-2' }}
+
+        </div>
+
+        <div>
+
+          <strong>Ahorrado</strong>
+
+          <br>
+
+          $ {{ objetivo.monto_actual | number:'1.2-2' }}
+
+        </div>
+
+      </div>
+
+      <ion-progress-bar
+
+        [value]="objetivo.progreso / 100">
+
+      </ion-progress-bar>
+
+      <div class="progreso">
+
+        {{ objetivo.progreso }} %
+
+      </div>
+
+      <p class="fecha">
+
+        <strong>Fecha límite:</strong>
+
+        {{ objetivo.fecha_limite ? (objetivo.fecha_limite | date:'dd/MM/yyyy') : 'Sin definir' }}
+
+      </p>
+
+      <div class="acciones">
+
+        <!-- Solo aparece si el objetivo NO está completado -->
+
+        <ion-button
+
+          *ngIf="objetivo.estado !== 'Completado'"
+
+          fill="solid"
+
+          color="success"
+
+          expand="block"
+
+          (click)="agregarAhorro(objetivo)">
+
+          💰 Agregar ahorro
+
+        </ion-button>
+
+        <!-- Cuando ya está completado -->
+
+        <ion-button
+
+          *ngIf="objetivo.estado === 'Completado'"
+
+          fill="solid"
+
+          color="medium"
+
+          expand="block"
+
+          disabled>
+
+          ✅ Objetivo alcanzado
+
+        </ion-button>
+
+        <ion-button
+
+          fill="clear"
+
+          color="primary"
+
+          (click)="editar(objetivo.id)">
+
+          <ion-icon
+
+            name="create-outline">
+
+          </ion-icon>
+
+        </ion-button>
+
+        <ion-button
+
+          fill="clear"
+
+          color="danger"
+
+          (click)="eliminar(objetivo.id)">
+
+          <ion-icon
+
+            name="trash-outline">
+
+          </ion-icon>
+
+        </ion-button>
+
+      </div>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
