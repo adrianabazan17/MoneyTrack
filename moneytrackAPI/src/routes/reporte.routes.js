@@ -18,4 +18,10 @@ router.get(
     ReporteController.gastosPorCategoria
 );
 
+router.get(
+    '/detalle',
+    verificarToken,
+    ReporteController.detalle
+);
+
 module.exports = router;

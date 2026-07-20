@@ -104,6 +104,50 @@ class ReporteController {
 
     }
 
+    static async detalle(req, res) {
+
+        try {
+
+            const usuario_id = req.usuario.id;
+
+            const { mes, anio } = req.query;
+
+            const data = await Reporte.detalleMovimientos(
+
+                usuario_id,
+
+                mes,
+
+                anio
+
+            );
+
+            res.json({
+
+                success: true,
+
+                data
+
+            });
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            res.status(500).json({
+
+                success:false,
+
+                message:'Error al obtener el detalle.'
+
+            });
+
+        }
+
+    }
+
 }
 
 module.exports = ReporteController;
